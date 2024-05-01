@@ -1,4 +1,4 @@
-module "environment" {
+module "prod_s3_bucket" {
   source      = "../modules/tf-environment"
-  bucket_name = "prod-s3-bucket-cloudnativeapp"
+  bucket_name = var.prod_bucket_name
 }
