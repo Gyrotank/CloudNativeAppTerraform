@@ -1,6 +1,6 @@
 provider "aws" {
   profile = "default"
-  region = "eu-west-1"
+  region  = "eu-west-1"
 }
 
 module "dev_s3_bucket" {
