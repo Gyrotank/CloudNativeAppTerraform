@@ -37,7 +37,7 @@ resource "aws_s3_bucket_notification" "s3_bucket_notification_cloudnativeapp-tf"
   bucket = aws_s3_bucket.s3_bucket_cloudnativeapp-tf.id
 
   topic {
-    topic_arn = aws_sns_topic.sns_image_notification.arn
+    topic_arn = aws_sns_topic.sns_image_notification-tf.arn
     events    = [ "s3:ObjectCreated:*" ]
   }
 }

@@ -9,3 +9,9 @@ variable "sns_name" {
   description = "Name of the SNS topic"
   default     = "sns-image-notification-topic"
 }
+
+variable "sqs_name" {
+  type        = string
+  description = "Name of the SQS queue"
+  default     = "sqs-queue"
+}
