@@ -1,3 +1,15 @@
+data "aws_vpc" "default" {
+  default = true
+}
+
+data "aws_region" "current" {}
+
+data "aws_subnet" "default_subnets_cidr_blocks" {
+  depends_on = [ aws_default_subnet.default_subnet_a, aws_default_subnet.default_subnet_b ]
+  for_each   = toset([ var.default_subnet_a_cidr_blocks, var.default_subnet_b_cidr_blocks ])
+  cidr_block = each.value
+}
+
 data "aws_iam_policy_document" "s3_iam_pd_cloudnativeapp-tf" {
   statement {
     sid       = "AllowECSPermissions"
