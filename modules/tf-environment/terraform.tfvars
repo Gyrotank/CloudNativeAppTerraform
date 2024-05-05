@@ -1,0 +1,1 @@
+bucket_name = "cloudnativeapp1glom-tf"

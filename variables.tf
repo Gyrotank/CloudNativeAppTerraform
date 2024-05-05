@@ -1,6 +1,11 @@
-variable "bucket_name" {
+variable "aws_profile" {
   type        = string
-  description = "Name of the S3 bucket to create"
-  default     = "s3-image-bucket"
+  description = "Name of the AWS profile"
+  default     = "default"
+}
 
+variable "aws_region" {
+  type        = string
+  description = "Name of the AWS region"
+  default     = "us-east-1"
 }

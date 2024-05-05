@@ -1,1 +1,2 @@
-bucket_name  = "cloudnativeapp1glom-tf"
+aws_profile = "default"
+aws_region  = "eu-west-1"
