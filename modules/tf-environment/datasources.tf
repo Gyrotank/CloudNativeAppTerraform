@@ -7,6 +7,7 @@ data "aws_iam_policy_document" "s3_iam_pd_cloudnativeapp-tf" {
       "s3:PutObjectAcl"
     ]
     resources = [
+      "arn:aws:s3:::${var.bucket_name}",
       "arn:aws:s3:::${var.bucket_name}/*"
     ]
     principals {
@@ -63,7 +64,7 @@ data "aws_iam_policy_document" "sqs_iam_pd_cloudnativeapp-tf" {
       "sqs:SendMessage"
     ]
     resources = [
-      "arn:aws:sqs:*:*:${var.sqs_name}/*"
+      "arn:aws:sqs:*:*:${var.sqs_name}"
     ]
     principals {
       type        = "Service"
