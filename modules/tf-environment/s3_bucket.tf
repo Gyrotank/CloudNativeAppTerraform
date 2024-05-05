@@ -30,5 +30,14 @@ resource "aws_s3_bucket_acl" "s3_bucket_acl_cloudnativeapp-tf" {
 
 resource "aws_s3_bucket_policy" "s3_bucket_policy_cloudnativeapp-tf" {
   bucket = aws_s3_bucket.s3_bucket_cloudnativeapp-tf.id
-  policy = data.aws_iam_policy_document.iam_pd_cloudnativeapp-tf.json
+  policy = data.aws_iam_policy_document.s3_iam_pd_cloudnativeapp-tf.json
+}
+
+resource "aws_s3_bucket_notification" "s3_bucket_notification_cloudnativeapp-tf" {
+  bucket = aws_s3_bucket.s3_bucket_cloudnativeapp-tf.id
+
+  topic {
+    topic_arn = aws_sns_topic.sns_image_notification.arn
+    events    = [ "s3:ObjectCreated:*" ]
+  }
 }

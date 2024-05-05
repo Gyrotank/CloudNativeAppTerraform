@@ -1,4 +1,4 @@
-data "aws_iam_policy_document" "iam_pd_cloudnativeapp-tf" {
+data "aws_iam_policy_document" "s3_iam_pd_cloudnativeapp-tf" {
   statement {
     sid       = "AllowECSPermissions"
     effect    = "Allow"
@@ -29,6 +29,28 @@ data "aws_iam_policy_document" "iam_pd_cloudnativeapp-tf" {
     principals {
       type        = "Service"
       identifiers = [ "lambda.amazonaws.com" ]
+    }
+  }
+}
+
+data "aws_iam_policy_document" "sns_iam_pd_cloudnativeapp-tf" {
+  statement {
+    sid     = "AllowPublishNewMessages"
+    effect  = "Allow"
+    actions = [
+      "sns:Publish"
+    ]
+    resources = [
+      "arn:aws:sns:*:*:${var.sns_name}"
+    ]
+    principals {
+      type        = "Service"
+      identifiers = [ "s3.amazonaws.com" ]
+    }
+    condition {
+      test     = "ArnEquals"
+      values   = [ aws_s3_bucket.s3_bucket_cloudnativeapp-tf.arn ]
+      variable = "aws:SourceArn"
     }
   }
 }
