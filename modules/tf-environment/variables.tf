@@ -15,3 +15,9 @@ variable "sqs_name" {
   description = "Name of the SQS queue"
   default     = "sqs-queue"
 }
+
+variable "dynamodb_table_name" {
+  type        = string
+  description = "Name of the DynamoDB table"
+  default     = "dynamodb_table"
+}
