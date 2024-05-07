@@ -7,7 +7,6 @@ resource "aws_iam_role" "lambda_iam_role" {
       {
         Action = "sts:AssumeRole"
         Effect = "Allow"
-        Sid    = ""
         Principal = {
           Service = "lambda.amazonaws.com"
         }
@@ -26,18 +25,18 @@ resource "aws_iam_policy" "lambda_iam_policy" {
       {
         Action    = [ "sqs:DeleteMessage", "sqs:GetQueueAttributes", "sqs:ReceiveMessage" ]
         Effect    = "Allow"
-        Sid       = ""
+        Resource = "*"
       },
       {
         Action    = [ "dynamodb:GetItem", "dynamodb:PutItem", "dynamodb:UpdateItem",
           "dynamodb:BatchWriteItem", "dynamodb:BatchGetItem" ]
         Effect    = "Allow"
-        Sid       = ""
+        Resource = "*"
       },
       {
         Action    = [ "rekognition:DetectLabels" ]
         Effect    = "Allow"
-        Sid       = ""
+        Resource = "*"
       }
     ]
   })
@@ -58,7 +57,6 @@ resource "aws_iam_role" "ecs_task_execution_role" {
       {
         Action = "sts:AssumeRole"
         Effect = "Allow"
-        Sid    = ""
         Principal = {
           Service = "ecs-tasks.amazonaws.com"
         }
@@ -88,7 +86,6 @@ resource "aws_iam_role" "ecs_task_task_role" {
       {
         Action = "sts:AssumeRole"
         Effect = "Allow"
-        Sid    = ""
         Principal = {
           Service = "ecs-tasks.amazonaws.com"
         }

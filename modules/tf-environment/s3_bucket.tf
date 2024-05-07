@@ -24,8 +24,8 @@ resource "aws_s3_bucket_acl" "s3_bucket_acl_cloudnativeapp-tf" {
     aws_s3_bucket_public_access_block.s3_bucket_pab_cloudnativeapp-tf
   ]
 
-  bucket     = aws_s3_bucket.s3_bucket_cloudnativeapp-tf.id
-  acl        = "public-read"
+  bucket = aws_s3_bucket.s3_bucket_cloudnativeapp-tf.id
+  acl    = "public-read"
 }
 
 resource "aws_s3_bucket_policy" "s3_bucket_policy_cloudnativeapp-tf" {
