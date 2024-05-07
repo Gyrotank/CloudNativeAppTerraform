@@ -61,7 +61,7 @@ data "aws_iam_policy_document" "sns_iam_pd_cloudnativeapp-tf" {
       identifiers = [ "s3.amazonaws.com" ]
     }
     condition {
-      test     = "ArnEquals"
+      test     = "ArnLike"
       values   = [ aws_s3_bucket.s3_bucket_cloudnativeapp-tf.arn ]
       variable = "aws:SourceArn"
     }
