@@ -1,7 +1,7 @@
 data "archive_file" "lambda_archive_file_cloudnativeapp-tf" {
   type        = "zip"
-  source_file = "lambda/index.py"
-  output_path = "lambda_function_payload.zip"
+  source_file = "${path.module}/lambda/index.py"
+  output_path = "${path.module}/lambda_function_payload.zip"
 }
 
 data "aws_iam_policy" "ecs_cloud_watch" {
@@ -16,6 +16,6 @@ data "aws_iam_policy" "ecs_s3" {
   name = "AmazonS3FullAccess"
 }
 
-data "aws_iam_policy" "ecs_synamodb" {
+data "aws_iam_policy" "ecs_dynamodb" {
   name = "AmazonDynamoDBFullAccess"
 }

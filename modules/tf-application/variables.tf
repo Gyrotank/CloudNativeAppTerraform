@@ -18,7 +18,7 @@ variable "region_name" {
   type = string
 }
 
-variable "ami_url" {
+variable "ami_uri" {
   type = string
 }
 

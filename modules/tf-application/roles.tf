@@ -115,5 +115,5 @@ resource "aws_iam_policy_attachment" "ecs_tt_s3_iam_policy_attachment" {
 resource "aws_iam_policy_attachment" "ecs_tt_dynamodb_iam_policy_attachment" {
   name       = var.ecs_tt_dynamodb_iam_policy_attachment_name
   roles      = [aws_iam_role.ecs_task_task_role.name]
-  policy_arn = data.aws_iam_policy.ecs_synamodb.arn
+  policy_arn = data.aws_iam_policy.ecs_dynamodb.arn
 }

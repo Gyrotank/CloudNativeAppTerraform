@@ -1,4 +1,5 @@
 ecs_cluster_name = "ecs_cluster_cloudnativeapp-tf"
+ecs_service_name = "CloudNativeApp1TFService"
 
 lambda_function_name              = "lambda_cloudnativeapp-tf"
 lambda_iam_role_name              = "lambda_iam_role_cloudnativeapp-tf"
@@ -21,5 +22,3 @@ cloudwatch_log_group = "CloudnativeappTfCloudwatchLogGroup"
 task_family_name = "CloudNativeApp1_TF_Task_Definition_Family"
 container_name   = "cloudnativeapp-1"
 image_uri        = "381492307166.dkr.ecr.eu-west-1.amazonaws.com/cloudnativeapp-1:latest"
-
-ecs_service_name = "CloudNativeApp1TFService"
