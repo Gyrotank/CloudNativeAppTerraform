@@ -7,19 +7,19 @@ variable "aws_profile" {
 variable "aws_region" {
   type        = string
   description = "Name of the AWS region"
-  default     = "us-east-1"
+  default     = "eu-west-1"
 }
 
 variable "availability_zone_a_name" {
   type        = string
   description = "Name of the primary availability zone"
-  default     = "eu-west-1"
+  default     = "eu-west-1a"
 }
 
 variable "availability_zone_b_name" {
   type        = string
   description = "Name of the secondary availability zone"
-  default     = "us-east-1"
+  default     = "eu-west-1b"
 }
 
 variable "bucket_name" {

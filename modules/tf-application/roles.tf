@@ -27,26 +27,17 @@ resource "aws_iam_policy" "lambda_iam_policy" {
         Action    = [ "sqs:DeleteMessage", "sqs:GetQueueAttributes", "sqs:ReceiveMessage" ]
         Effect    = "Allow"
         Sid       = ""
-        Principal = {
-          Service = "lambda.amazonaws.com"
-        }
       },
       {
         Action    = [ "dynamodb:GetItem", "dynamodb:PutItem", "dynamodb:UpdateItem",
           "dynamodb:BatchWriteItem", "dynamodb:BatchGetItem" ]
         Effect    = "Allow"
         Sid       = ""
-        Principal = {
-          Service = "lambda.amazonaws.com"
-        }
       },
       {
         Action    = [ "rekognition:DetectLabels" ]
         Effect    = "Allow"
         Sid       = ""
-        Principal = {
-          Service = "lambda.amazonaws.com"
-        }
       }
     ]
   })
