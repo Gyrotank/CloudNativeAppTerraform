@@ -1,9 +1,10 @@
 module "environment" {
   source = "../modules/tf-environment"
 
-  bucket_name = "dev-bucket-cloudnativeapp1glom-tf"
-  sns_name    = "dev-image-notification-cloudnativeapp1glom-tf"
-  sqs_name    = "dev-queue-cloudnativeapp1glom-tf"
+  bucket_name         = "dev-bucket-cloudnativeapp1glom-tf"
+  sns_name            = "dev-image-notification-cloudnativeapp1glom-tf"
+  sqs_name            = "dev-queue-cloudnativeapp1glom-tf"
+  dynamodb_table_name = "DevCloudNativeApp1Table-tf"
 
   default_subnet_a_id          = "subnet-0e2759092403c537c"
   default_subnet_a_cidr_blocks = "172.31.0.0/20"
