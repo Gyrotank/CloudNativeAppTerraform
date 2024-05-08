@@ -3,6 +3,7 @@ resource "aws_lb" "load_balancer" {
   internal           = false
   load_balancer_type = "application"
   subnets            = var.subnet_ids
+  drop_invalid_header_fields = true
 
   enable_deletion_protection = false
 }
