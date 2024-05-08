@@ -1,19 +1,19 @@
 [0m[1mmodule.application.data.archive_file.lambda_archive_file_cloudnativeapp-tf: Reading...[0m[0m
 [0m[1mmodule.application.data.archive_file.lambda_archive_file_cloudnativeapp-tf: Read complete after 0s [id=ba33f91a4d78027f0cb025dc8a4c9c5c2c54a401][0m
-[0m[1mmodule.application.data.aws_iam_policy.ecs_cloud_watch: Reading...[0m[0m
-[0m[1mmodule.application.data.aws_iam_policy.ecs_s3: Reading...[0m[0m
 [0m[1mmodule.application.data.aws_iam_policy.ecs_dynamodb: Reading...[0m[0m
+[0m[1mmodule.application.data.aws_iam_policy.ecs_s3: Reading...[0m[0m
+[0m[1mmodule.application.data.aws_iam_policy.ecs_cloud_watch: Reading...[0m[0m
 [0m[1mmodule.application.data.aws_iam_policy.ecs_app_runner_service: Reading...[0m[0m
 [0m[1mmodule.environment.data.aws_vpc.default: Reading...[0m[0m
-[0m[1mmodule.environment.data.aws_iam_policy_document.s3_iam_pd_cloudnativeapp-tf: Reading...[0m[0m
-[0m[1mmodule.environment.data.aws_iam_policy_document.s3_iam_pd_cloudnativeapp-tf: Read complete after 0s [id=1436911586][0m
 [0m[1mmodule.environment.data.aws_region.current: Reading...[0m[0m
 [0m[1mmodule.environment.data.aws_region.current: Read complete after 0s [id=eu-west-1][0m
-[0m[1mmodule.environment.data.aws_vpc.default: Read complete after 0s [id=vpc-0bc8d118b26e3aab1][0m
-[0m[1mmodule.application.data.aws_iam_policy.ecs_s3: Read complete after 3s [id=arn:aws:iam::aws:policy/AmazonS3FullAccess][0m
-[0m[1mmodule.application.data.aws_iam_policy.ecs_cloud_watch: Read complete after 3s [id=arn:aws:iam::aws:policy/CloudWatchLogsFullAccess][0m
-[0m[1mmodule.application.data.aws_iam_policy.ecs_dynamodb: Read complete after 3s [id=arn:aws:iam::aws:policy/AmazonDynamoDBFullAccess][0m
-[0m[1mmodule.application.data.aws_iam_policy.ecs_app_runner_service: Read complete after 3s [id=arn:aws:iam::aws:policy/service-role/AWSAppRunnerServicePolicyForECRAccess][0m
+[0m[1mmodule.environment.data.aws_iam_policy_document.s3_iam_pd_cloudnativeapp-tf: Reading...[0m[0m
+[0m[1mmodule.environment.data.aws_iam_policy_document.s3_iam_pd_cloudnativeapp-tf: Read complete after 0s [id=1436911586][0m
+[0m[1mmodule.environment.data.aws_vpc.default: Read complete after 1s [id=vpc-0bc8d118b26e3aab1][0m
+[0m[1mmodule.application.data.aws_iam_policy.ecs_app_runner_service: Read complete after 5s [id=arn:aws:iam::aws:policy/service-role/AWSAppRunnerServicePolicyForECRAccess][0m
+[0m[1mmodule.application.data.aws_iam_policy.ecs_dynamodb: Read complete after 5s [id=arn:aws:iam::aws:policy/AmazonDynamoDBFullAccess][0m
+[0m[1mmodule.application.data.aws_iam_policy.ecs_s3: Read complete after 5s [id=arn:aws:iam::aws:policy/AmazonS3FullAccess][0m
+[0m[1mmodule.application.data.aws_iam_policy.ecs_cloud_watch: Read complete after 5s [id=arn:aws:iam::aws:policy/CloudWatchLogsFullAccess][0m
 
 Terraform used the selected providers to generate the following execution
 plan. Resource actions are indicated with the following symbols:
@@ -356,7 +356,7 @@ Terraform will perform the following actions:
       [32m+[0m[0m client_keep_alive                                            = 3600
       [32m+[0m[0m desync_mitigation_mode                                       = "defensive"
       [32m+[0m[0m dns_name                                                     = (known after apply)
-      [32m+[0m[0m drop_invalid_header_fields                                   = false
+      [32m+[0m[0m drop_invalid_header_fields                                   = true
       [32m+[0m[0m enable_deletion_protection                                   = false
       [32m+[0m[0m enable_http2                                                 = true
       [32m+[0m[0m enable_tls_version_and_cipher_suite_headers                  = false
@@ -809,7 +809,7 @@ Terraform will perform the following actions:
 [1m  # module.environment.aws_security_group.ecr_api_sg[0m will be created
 [0m  [32m+[0m[0m resource "aws_security_group" "ecr_api_sg" {
       [32m+[0m[0m arn                    = (known after apply)
-      [32m+[0m[0m description            = "Managed by Terraform"
+      [32m+[0m[0m description            = "ECR API Security group"
       [32m+[0m[0m egress                 = (known after apply)
       [32m+[0m[0m id                     = (known after apply)
       [32m+[0m[0m ingress                = [
@@ -818,6 +818,7 @@ Terraform will perform the following actions:
                   [32m+[0m[0m "172.31.0.0/20",
                   [32m+[0m[0m "172.31.16.0/20",
                 ]
+              [32m+[0m[0m description      = "allow all ingress traffic from subnets"
               [32m+[0m[0m from_port        = 0
               [32m+[0m[0m ipv6_cidr_blocks = []
               [32m+[0m[0m prefix_list_ids  = []
@@ -825,7 +826,6 @@ Terraform will perform the following actions:
               [32m+[0m[0m security_groups  = []
               [32m+[0m[0m self             = false
               [32m+[0m[0m to_port          = 65535
-                [90m# (1 unchanged attribute hidden)[0m[0m
             },
         ]
       [32m+[0m[0m name                   = (known after apply)
@@ -839,7 +839,7 @@ Terraform will perform the following actions:
 [1m  # module.environment.aws_security_group.ecr_dkr_sg[0m will be created
 [0m  [32m+[0m[0m resource "aws_security_group" "ecr_dkr_sg" {
       [32m+[0m[0m arn                    = (known after apply)
-      [32m+[0m[0m description            = "Managed by Terraform"
+      [32m+[0m[0m description            = "ECR DKR Security group"
       [32m+[0m[0m egress                 = (known after apply)
       [32m+[0m[0m id                     = (known after apply)
       [32m+[0m[0m ingress                = [
@@ -848,6 +848,7 @@ Terraform will perform the following actions:
                   [32m+[0m[0m "172.31.0.0/20",
                   [32m+[0m[0m "172.31.16.0/20",
                 ]
+              [32m+[0m[0m description      = "allow all ingress traffic from subnets"
               [32m+[0m[0m from_port        = 0
               [32m+[0m[0m ipv6_cidr_blocks = []
               [32m+[0m[0m prefix_list_ids  = []
@@ -855,7 +856,6 @@ Terraform will perform the following actions:
               [32m+[0m[0m security_groups  = []
               [32m+[0m[0m self             = false
               [32m+[0m[0m to_port          = 65535
-                [90m# (1 unchanged attribute hidden)[0m[0m
             },
         ]
       [32m+[0m[0m name                   = (known after apply)
@@ -869,7 +869,7 @@ Terraform will perform the following actions:
 [1m  # module.environment.aws_security_group.logs_sg[0m will be created
 [0m  [32m+[0m[0m resource "aws_security_group" "logs_sg" {
       [32m+[0m[0m arn                    = (known after apply)
-      [32m+[0m[0m description            = "Managed by Terraform"
+      [32m+[0m[0m description            = "Logs Security group"
       [32m+[0m[0m egress                 = (known after apply)
       [32m+[0m[0m id                     = (known after apply)
       [32m+[0m[0m ingress                = [
@@ -878,6 +878,7 @@ Terraform will perform the following actions:
                   [32m+[0m[0m "172.31.0.0/20",
                   [32m+[0m[0m "172.31.16.0/20",
                 ]
+              [32m+[0m[0m description      = "allow all ingress traffic from subnets"
               [32m+[0m[0m from_port        = 0
               [32m+[0m[0m ipv6_cidr_blocks = []
               [32m+[0m[0m prefix_list_ids  = []
@@ -885,7 +886,6 @@ Terraform will perform the following actions:
               [32m+[0m[0m security_groups  = []
               [32m+[0m[0m self             = false
               [32m+[0m[0m to_port          = 65535
-                [90m# (1 unchanged attribute hidden)[0m[0m
             },
         ]
       [32m+[0m[0m name                   = (known after apply)
