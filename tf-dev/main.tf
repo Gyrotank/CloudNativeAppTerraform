@@ -23,7 +23,6 @@ module "application" {
 
   vpc_id         = module.environment.default_vpc_id
   region_name    = module.environment.default_region_name
-  ami_uri        = "DEV AWS API URI value"
   subnet_ids     = module.environment.default_subnet_ids
   s3_bucket_name = module.environment.s3_bucket_name
   sqs_queue_arn  = module.environment.sqs_queue_arn

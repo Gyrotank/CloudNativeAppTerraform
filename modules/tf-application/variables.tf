@@ -22,10 +22,6 @@ variable "region_name" {
   type = string
 }
 
-variable "ami_uri" {
-  type = string
-}
-
 variable "ecs_cluster_name" {
   type = string
 }
