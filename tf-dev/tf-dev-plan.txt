@@ -1,19 +1,19 @@
 [0m[1mmodule.application.data.archive_file.lambda_archive_file_cloudnativeapp-tf: Reading...[0m[0m
 [0m[1mmodule.application.data.archive_file.lambda_archive_file_cloudnativeapp-tf: Read complete after 0s [id=ba33f91a4d78027f0cb025dc8a4c9c5c2c54a401][0m
-[0m[1mmodule.application.data.aws_iam_policy.ecs_dynamodb: Reading...[0m[0m
-[0m[1mmodule.application.data.aws_iam_policy.ecs_s3: Reading...[0m[0m
-[0m[1mmodule.application.data.aws_iam_policy.ecs_cloud_watch: Reading...[0m[0m
-[0m[1mmodule.application.data.aws_iam_policy.ecs_app_runner_service: Reading...[0m[0m
-[0m[1mmodule.environment.data.aws_vpc.default: Reading...[0m[0m
 [0m[1mmodule.environment.data.aws_region.current: Reading...[0m[0m
-[0m[1mmodule.environment.data.aws_region.current: Read complete after 0s [id=eu-west-1][0m
 [0m[1mmodule.environment.data.aws_iam_policy_document.s3_iam_pd_cloudnativeapp-tf: Reading...[0m[0m
 [0m[1mmodule.environment.data.aws_iam_policy_document.s3_iam_pd_cloudnativeapp-tf: Read complete after 0s [id=1436911586][0m
-[0m[1mmodule.environment.data.aws_vpc.default: Read complete after 1s [id=vpc-0bc8d118b26e3aab1][0m
-[0m[1mmodule.application.data.aws_iam_policy.ecs_app_runner_service: Read complete after 5s [id=arn:aws:iam::aws:policy/service-role/AWSAppRunnerServicePolicyForECRAccess][0m
-[0m[1mmodule.application.data.aws_iam_policy.ecs_dynamodb: Read complete after 5s [id=arn:aws:iam::aws:policy/AmazonDynamoDBFullAccess][0m
-[0m[1mmodule.application.data.aws_iam_policy.ecs_s3: Read complete after 5s [id=arn:aws:iam::aws:policy/AmazonS3FullAccess][0m
-[0m[1mmodule.application.data.aws_iam_policy.ecs_cloud_watch: Read complete after 5s [id=arn:aws:iam::aws:policy/CloudWatchLogsFullAccess][0m
+[0m[1mmodule.environment.data.aws_region.current: Read complete after 0s [id=eu-west-1][0m
+[0m[1mmodule.application.data.aws_iam_policy.ecs_s3: Reading...[0m[0m
+[0m[1mmodule.application.data.aws_iam_policy.ecs_app_runner_service: Reading...[0m[0m
+[0m[1mmodule.application.data.aws_iam_policy.ecs_dynamodb: Reading...[0m[0m
+[0m[1mmodule.environment.data.aws_vpc.default: Reading...[0m[0m
+[0m[1mmodule.application.data.aws_iam_policy.ecs_cloud_watch: Reading...[0m[0m
+[0m[1mmodule.environment.data.aws_vpc.default: Read complete after 0s [id=vpc-0bc8d118b26e3aab1][0m
+[0m[1mmodule.application.data.aws_iam_policy.ecs_app_runner_service: Read complete after 3s [id=arn:aws:iam::aws:policy/service-role/AWSAppRunnerServicePolicyForECRAccess][0m
+[0m[1mmodule.application.data.aws_iam_policy.ecs_cloud_watch: Read complete after 3s [id=arn:aws:iam::aws:policy/CloudWatchLogsFullAccess][0m
+[0m[1mmodule.application.data.aws_iam_policy.ecs_dynamodb: Read complete after 3s [id=arn:aws:iam::aws:policy/AmazonDynamoDBFullAccess][0m
+[0m[1mmodule.application.data.aws_iam_policy.ecs_s3: Read complete after 3s [id=arn:aws:iam::aws:policy/AmazonS3FullAccess][0m
 
 Terraform used the selected providers to generate the following execution
 plan. Resource actions are indicated with the following symbols:
@@ -518,7 +518,7 @@ Terraform will perform the following actions:
           [32m+[0m[0m sid       = "AllowPublishNewMessages"
 
           [32m+[0m[0m condition {
-              [32m+[0m[0m test     = "ArnEquals"
+              [32m+[0m[0m test     = "ArnLike"
               [32m+[0m[0m values   = [
                   [32m+[0m[0m (known after apply),
                 ]
@@ -912,14 +912,6 @@ Terraform will perform the following actions:
       [32m+[0m[0m tracing_config              = (known after apply)
     }
 
-[1m  # module.environment.aws_sns_topic_policy.sns_image_notification_cloudnativeapp_policy-tf[0m will be created
-[0m  [32m+[0m[0m resource "aws_sns_topic_policy" "sns_image_notification_cloudnativeapp_policy-tf" {
-      [32m+[0m[0m arn    = (known after apply)
-      [32m+[0m[0m id     = (known after apply)
-      [32m+[0m[0m owner  = (known after apply)
-      [32m+[0m[0m policy = (known after apply)
-    }
-
 [1m  # module.environment.aws_sns_topic_subscription.sns_image_notification_topic_subscription-tf[0m will be created
 [0m  [32m+[0m[0m resource "aws_sns_topic_subscription" "sns_image_notification_topic_subscription-tf" {
       [32m+[0m[0m arn                             = (known after apply)
@@ -1091,7 +1083,7 @@ Terraform will perform the following actions:
       [32m+[0m[0m vpc_id                = "vpc-0bc8d118b26e3aab1"
     }
 
-[1mPlan:[0m 44 to add, 0 to change, 0 to destroy.
+[1mPlan:[0m 43 to add, 0 to change, 0 to destroy.
 [0m[90m
 ─────────────────────────────────────────────────────────────────────────────[0m
 
