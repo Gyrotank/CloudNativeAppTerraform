@@ -26,6 +26,7 @@ module "application" {
   ami_uri        = "DEV AWS API URI value"
   subnet_ids     = module.environment.default_subnet_ids
   s3_bucket_name = module.environment.s3_bucket_name
+  sqs_queue_arn  = module.environment.sqs_queue_arn
   dynamodb_name  = module.environment.dynamodb_name
 
   ecs_task_execution_role_name                       = "dev_ecs_task_execution_role_cloudnativeapp-tf"

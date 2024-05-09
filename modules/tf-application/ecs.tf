@@ -35,7 +35,7 @@ resource "aws_ecs_task_definition" "ecs_task_definition" {
       "options": {
         "awslogs-create-group": "true",
         "awslogs-group": "/ecs/${var.cloudwatch_log_group}",
-        "awslogs-region": "eu-west-1",
+        "awslogs-region": var.region_name,
         "awslogs-stream-prefix": "ecs"
       },
       "secretOptions": []
@@ -43,8 +43,16 @@ resource "aws_ecs_task_definition" "ecs_task_definition" {
 
     environment = [
       {
-        name  = "dynamodb_name"
-        value = var.dynamodb_name
+        "name": "AWS_DEFAULT_REGION",
+        "value": var.region_name
+      },
+      {
+        "name": "S3_BUCKET_NAME",
+        "value": var.s3_bucket_name
+      },
+      {
+        "name": "DYNAMODB_TABLE_NAME",
+        "value": var.dynamodb_name
       }
     ]
   }])

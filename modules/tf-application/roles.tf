@@ -15,6 +15,18 @@ resource "aws_iam_role" "lambda_iam_role" {
   })
 }
 
+#Attachment of a Managed AWS IAM Policy for Lambda basic execution
+resource "aws_iam_role_policy_attachment" "lambda_basic_execution_policy" {
+  policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+  role       = aws_iam_role.lambda_iam_role.name
+}
+
+#Attachment of a Managed AWS IAM Policy for Lambda sqs execution
+resource "aws_iam_role_policy_attachment" "lambda_basic_sqs_queue_execution_policy" {
+  policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaSQSQueueExecutionRole"
+  role       = aws_iam_role.lambda_iam_role.name
+}
+
 resource "aws_iam_policy" "lambda_iam_policy" {
   name        = var.lambda_iam_policy_name
   description = "A policy for lambda"

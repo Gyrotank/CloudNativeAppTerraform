@@ -1,5 +1,7 @@
 resource "aws_s3_bucket" "s3_bucket_cloudnativeapp-tf" {
   bucket = var.bucket_name
+
+  force_destroy = true
 }
 
 resource "aws_s3_bucket_ownership_controls" "s3_bucket_oc_cloudnativeapp-tf" {

@@ -8,7 +8,15 @@ resource "aws_security_group" "ecr_dkr_sg" {
     from_port   = 0
     to_port     = 65535
     protocol    = "tcp"
-    cidr_blocks = [ for subnet in data.aws_subnet.default_subnets_cidr_blocks : subnet.cidr_block ]
+    cidr_blocks = [ data.aws_vpc.default.cidr_block ]
+  }
+
+  egress {
+    description = "allow all egress traffic"
+    from_port   = 0
+    to_port     = 65535
+    protocol    = "tcp"
+    cidr_blocks = [ "0.0.0.0/0" ]
   }
 }
 
@@ -22,7 +30,15 @@ resource "aws_security_group" "ecr_api_sg" {
     from_port   = 0
     to_port     = 65535
     protocol    = "tcp"
-    cidr_blocks = [ for subnet in data.aws_subnet.default_subnets_cidr_blocks : subnet.cidr_block ]
+    cidr_blocks = [ data.aws_vpc.default.cidr_block ]
+  }
+
+  egress {
+    description = "allow all egress traffic"
+    from_port   = 0
+    to_port     = 65535
+    protocol    = "tcp"
+    cidr_blocks = [ "0.0.0.0/0" ]
   }
 }
 
@@ -36,6 +52,14 @@ resource "aws_security_group" "logs_sg" {
     from_port   = 0
     to_port     = 65535
     protocol    = "tcp"
-    cidr_blocks = [ for subnet in data.aws_subnet.default_subnets_cidr_blocks : subnet.cidr_block ]
+    cidr_blocks = [ data.aws_vpc.default.cidr_block ]
+  }
+
+  egress {
+    description = "allow all egress traffic"
+    from_port   = 0
+    to_port     = 65535
+    protocol    = "tcp"
+    cidr_blocks = [ "0.0.0.0/0" ]
   }
 }
