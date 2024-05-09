@@ -1,0 +1,11 @@
+...
+module.application.aws_lb.load_balancer: Creation complete after 2m54s [id=arn:aws:elasticloadbalancing:eu-west-1:381492307166:loadbalancer/app/DevCloudnativeappTfLb/b34ad1d94448ac2b]
+module.application.aws_lb_listener.lb_listener: Creating...
+module.application.aws_lb_listener.lb_listener: Creation complete after 0s [id=arn:aws:elasticloadbalancing:eu-west-1:381492307166:listener/app/DevCloudnativeappTfLb/b34ad1d94448ac2b/b2473ac5ffe36379]
+module.application.aws_ecs_service.ecs_service: Creation complete after 2m46s [id=arn:aws:ecs:eu-west-1:381492307166:service/dev_ecs_cluster_cloudnativeapp-tf/DevCloudNativeApp1TFService]
+╷
+│ Error: creating S3 Bucket (dev-bucket-cloudnativeapp1glom-tf) Notification: operation error S3: PutBucketNotificationConfiguration, https response error StatusCode: 400, RequestID: S69K7X37RM05R9N6, HostID: uTDLSlPuxeE6uj0hTjLubflCkmnTFW12pqjW0kydiZrHN4kbKjp1FUCSPSPqY8H2i7ZpaOi7uGdYt8o3pQ+TypcBcrDU0xcJ, api error InvalidArgument: Unable to validate the following destination configurations
+│
+│   with module.environment.aws_s3_bucket_notification.s3_bucket_notification_cloudnativeapp-tf,
+│   on ..\modules\tf-environment\s3_bucket.tf line 36, in resource "aws_s3_bucket_notification" "s3_bucket_notification_cloudnativeapp-tf":
+│   36: resource "aws_s3_bucket_notification" "s3_bucket_notification_cloudnativeapp-tf" {
