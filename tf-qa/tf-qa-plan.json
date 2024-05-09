@@ -2,8 +2,8 @@
   "format_version": "1.2",
   "terraform_version": "1.8.2",
   "variables": {
-    "dev_bucket_name": {
-      "value": "dev-s3-bucket-cloudnativeapp"
+    "qa_bucket_name": {
+      "value": "qa-s3-bucket-cloudnativeapp"
     }
   },
   "planned_values": {
@@ -20,7 +20,7 @@
               "schema_version": 0,
               "values": {
                 "kms_key_id": null,
-                "name": "DevCloudnativeappTfCloudwatchLogGroup",
+                "name": "QaCloudnativeappTfCloudwatchLogGroup",
                 "retention_in_days": 0,
                 "skip_destroy": false,
                 "tags": null
@@ -38,7 +38,7 @@
               "schema_version": 0,
               "values": {
                 "configuration": [],
-                "name": "dev_ecs_cluster_cloudnativeapp-tf",
+                "name": "qa_ecs_cluster_cloudnativeapp-tf",
                 "service_connect_defaults": [],
                 "setting": [
                   {
@@ -84,7 +84,7 @@
                     "elb_name": ""
                   }
                 ],
-                "name": "DevCloudNativeApp1TFService",
+                "name": "QaCloudNativeApp1TFService",
                 "network_configuration": [
                   {
                     "assign_public_ip": true,
@@ -137,10 +137,10 @@
               "provider_name": "registry.terraform.io/hashicorp/aws",
               "schema_version": 1,
               "values": {
-                "container_definitions": "[{\"environment\":[{\"name\":\"AWS_DEFAULT_REGION\",\"value\":\"eu-west-1\"},{\"name\":\"DYNAMODB_TABLE_NAME\",\"value\":\"DevCloudNativeApp1Table-tf\"},{\"name\":\"S3_BUCKET_NAME\",\"value\":\"dev-bucket-cloudnativeapp1glom-tf\"}],\"essential\":true,\"image\":\"381492307166.dkr.ecr.eu-west-1.amazonaws.com/cloudnativeapp-1:latest\",\"logConfiguration\":{\"logDriver\":\"awslogs\",\"options\":{\"awslogs-create-group\":\"true\",\"awslogs-group\":\"/ecs/DevCloudnativeappTfCloudwatchLogGroup\",\"awslogs-region\":\"eu-west-1\",\"awslogs-stream-prefix\":\"ecs\"},\"secretOptions\":[]},\"name\":\"cloudnativeapp-1\",\"portMappings\":[{\"appProtocol\":\"http\",\"containerPort\":8080,\"hostPort\":8080,\"name\":\"cloudnativeapp-1-tf-8080-tcp\",\"protocol\":\"tcp\"}]}]",
+                "container_definitions": "[{\"environment\":[{\"name\":\"AWS_DEFAULT_REGION\",\"value\":\"eu-west-1\"},{\"name\":\"DYNAMODB_TABLE_NAME\",\"value\":\"QaCloudNativeApp1Table-tf\"},{\"name\":\"S3_BUCKET_NAME\",\"value\":\"qa-bucket-cloudnativeapp1glom-tf\"}],\"essential\":true,\"image\":\"381492307166.dkr.ecr.eu-west-1.amazonaws.com/cloudnativeapp-1:latest\",\"logConfiguration\":{\"logDriver\":\"awslogs\",\"options\":{\"awslogs-create-group\":\"true\",\"awslogs-group\":\"/ecs/QaCloudnativeappTfCloudwatchLogGroup\",\"awslogs-region\":\"eu-west-1\",\"awslogs-stream-prefix\":\"ecs\"},\"secretOptions\":[]},\"name\":\"cloudnativeapp-1\",\"portMappings\":[{\"appProtocol\":\"http\",\"containerPort\":8080,\"hostPort\":8080,\"name\":\"cloudnativeapp-1-tf-8080-tcp\",\"protocol\":\"tcp\"}]}]",
                 "cpu": "1024",
                 "ephemeral_storage": [],
-                "family": "Dev_CloudNativeApp1_TF_Task_Definition_Family",
+                "family": "Qa_CloudNativeApp1_TF_Task_Definition_Family",
                 "inference_accelerator": [],
                 "ipc_mode": null,
                 "memory": "3072",
@@ -179,7 +179,7 @@
               "schema_version": 0,
               "values": {
                 "description": "A policy for lambda",
-                "name": "dev_lambda_iam_policy_cloudnativeapp-tf",
+                "name": "qa_lambda_iam_policy_cloudnativeapp-tf",
                 "path": "/",
                 "policy": "{\"Statement\":[{\"Action\":[\"sqs:DeleteMessage\",\"sqs:GetQueueAttributes\",\"sqs:ReceiveMessage\"],\"Effect\":\"Allow\",\"Resource\":\"*\"},{\"Action\":[\"dynamodb:GetItem\",\"dynamodb:PutItem\",\"dynamodb:UpdateItem\",\"dynamodb:BatchWriteItem\",\"dynamodb:BatchGetItem\"],\"Effect\":\"Allow\",\"Resource\":\"*\"},{\"Action\":[\"rekognition:DetectLabels\"],\"Effect\":\"Allow\",\"Resource\":\"*\"},{\"Action\":[\"s3:GetObject\"],\"Effect\":\"Allow\",\"Resource\":\"*\"}],\"Version\":\"2012-10-17\"}",
                 "tags": null
@@ -197,10 +197,10 @@
               "schema_version": 0,
               "values": {
                 "groups": null,
-                "name": "dev_ecs_te_apprunnerservice_iam_policy_attachment_cloudnativeapp-tf",
+                "name": "qa_ecs_te_apprunnerservice_iam_policy_attachment_cloudnativeapp-tf",
                 "policy_arn": "arn:aws:iam::aws:policy/service-role/AWSAppRunnerServicePolicyForECRAccess",
                 "roles": [
-                  "dev_ecs_task_execution_role_cloudnativeapp-tf"
+                  "qa_ecs_task_execution_role_cloudnativeapp-tf"
                 ],
                 "users": null
               },
@@ -219,10 +219,10 @@
               "schema_version": 0,
               "values": {
                 "groups": null,
-                "name": "dev_ecs_te_cloudwatch_iam_policy_attachment_cloudnativeapp-tf",
+                "name": "qa_ecs_te_cloudwatch_iam_policy_attachment_cloudnativeapp-tf",
                 "policy_arn": "arn:aws:iam::aws:policy/CloudWatchLogsFullAccess",
                 "roles": [
-                  "dev_ecs_task_execution_role_cloudnativeapp-tf"
+                  "qa_ecs_task_execution_role_cloudnativeapp-tf"
                 ],
                 "users": null
               },
@@ -241,10 +241,10 @@
               "schema_version": 0,
               "values": {
                 "groups": null,
-                "name": "dev_ecs_tt_amazondynamodb_iam_policy_attachment_cloudnativeapp-tf",
+                "name": "qa_ecs_tt_amazondynamodb_iam_policy_attachment_cloudnativeapp-tf",
                 "policy_arn": "arn:aws:iam::aws:policy/AmazonDynamoDBFullAccess",
                 "roles": [
-                  "dev_ecs_task_task_role_cloudnativeapp-tf"
+                  "qa_ecs_task_task_role_cloudnativeapp-tf"
                 ],
                 "users": null
               },
@@ -263,10 +263,10 @@
               "schema_version": 0,
               "values": {
                 "groups": null,
-                "name": "dev_ecs_tt_amazons3_iam_policy_attachment_cloudnativeapp-tf",
+                "name": "qa_ecs_tt_amazons3_iam_policy_attachment_cloudnativeapp-tf",
                 "policy_arn": "arn:aws:iam::aws:policy/AmazonS3FullAccess",
                 "roles": [
-                  "dev_ecs_task_task_role_cloudnativeapp-tf"
+                  "qa_ecs_task_task_role_cloudnativeapp-tf"
                 ],
                 "users": null
               },
@@ -285,9 +285,9 @@
               "schema_version": 0,
               "values": {
                 "groups": null,
-                "name": "dev_lambda_iam_policy_attachment_cloudnativeapp-tf",
+                "name": "qa_lambda_iam_policy_attachment_cloudnativeapp-tf",
                 "roles": [
-                  "dev_lambda_iam_role_cloudnativeapp-tf"
+                  "qa_lambda_iam_role_cloudnativeapp-tf"
                 ],
                 "users": null
               },
@@ -309,7 +309,7 @@
                 "description": null,
                 "force_detach_policies": false,
                 "max_session_duration": 3600,
-                "name": "dev_ecs_task_execution_role_cloudnativeapp-tf",
+                "name": "qa_ecs_task_execution_role_cloudnativeapp-tf",
                 "path": "/",
                 "permissions_boundary": null,
                 "tags": null
@@ -332,7 +332,7 @@
                 "description": null,
                 "force_detach_policies": false,
                 "max_session_duration": 3600,
-                "name": "dev_ecs_task_task_role_cloudnativeapp-tf",
+                "name": "qa_ecs_task_task_role_cloudnativeapp-tf",
                 "path": "/",
                 "permissions_boundary": null,
                 "tags": null
@@ -355,7 +355,7 @@
                 "description": null,
                 "force_detach_policies": false,
                 "max_session_duration": 3600,
-                "name": "dev_lambda_iam_role_cloudnativeapp-tf",
+                "name": "qa_lambda_iam_role_cloudnativeapp-tf",
                 "path": "/",
                 "permissions_boundary": null,
                 "tags": null
@@ -375,7 +375,7 @@
               "schema_version": 0,
               "values": {
                 "policy_arn": "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
-                "role": "dev_lambda_iam_role_cloudnativeapp-tf"
+                "role": "qa_lambda_iam_role_cloudnativeapp-tf"
               },
               "sensitive_values": {}
             },
@@ -388,7 +388,7 @@
               "schema_version": 0,
               "values": {
                 "policy_arn": "arn:aws:iam::aws:policy/service-role/AWSLambdaSQSQueueExecutionRole",
-                "role": "dev_lambda_iam_role_cloudnativeapp-tf"
+                "role": "qa_lambda_iam_role_cloudnativeapp-tf"
               },
               "sensitive_values": {}
             },
@@ -442,13 +442,13 @@
                 "environment": [
                   {
                     "variables": {
-                      "dynamodb_name": "DevCloudNativeApp1Table-tf"
+                      "dynamodb_name": "QaCloudNativeApp1Table-tf"
                     }
                   }
                 ],
                 "file_system_config": [],
                 "filename": "../modules/tf-application/lambda_function_payload.zip",
-                "function_name": "dev_lambda_cloudnativeapp-tf",
+                "function_name": "qa_lambda_cloudnativeapp-tf",
                 "handler": "index.lambda_handler",
                 "image_config": [],
                 "image_uri": null,
@@ -514,7 +514,7 @@
                 "idle_timeout": 60,
                 "internal": false,
                 "load_balancer_type": "application",
-                "name": "DevCloudnativeappTfLb",
+                "name": "QaCloudnativeappTfLb",
                 "preserve_host_header": false,
                 "subnets": [
                   "subnet-01da444623a60d536",
@@ -596,7 +596,7 @@
                   }
                 ],
                 "lambda_multi_value_headers_enabled": false,
-                "name": "DevCloudnativeappTfLbTg",
+                "name": "QaCloudnativeappTfLbTg",
                 "port": 80,
                 "protocol": "HTTP",
                 "proxy_protocol_v2": false,
@@ -814,7 +814,7 @@
                 "hash_key": "LabelValue",
                 "import_table": [],
                 "local_secondary_index": [],
-                "name": "DevCloudNativeApp1Table-tf",
+                "name": "QaCloudNativeApp1Table-tf",
                 "range_key": "ImageName",
                 "read_capacity": 10,
                 "replica": [],
@@ -850,7 +850,7 @@
               "provider_name": "registry.terraform.io/hashicorp/aws",
               "schema_version": 0,
               "values": {
-                "bucket": "dev-bucket-cloudnativeapp1glom-tf",
+                "bucket": "qa-bucket-cloudnativeapp1glom-tf",
                 "force_destroy": true,
                 "tags": null,
                 "timeouts": null
@@ -944,7 +944,7 @@
               "provider_name": "registry.terraform.io/hashicorp/aws",
               "schema_version": 0,
               "values": {
-                "policy": "{\"Statement\":[{\"Action\":[\"s3:PutObjectAcl\",\"s3:PutObject\"],\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"ecs-tasks.amazonaws.com\"},\"Resource\":[\"arn:aws:s3:::dev-bucket-cloudnativeapp1glom-tf/*\",\"arn:aws:s3:::dev-bucket-cloudnativeapp1glom-tf\"],\"Sid\":\"AllowECSPermissions\"},{\"Action\":[\"s3:ListBucket\",\"s3:GetObjectAttributes\",\"s3:GetObject\"],\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"lambda.amazonaws.com\"},\"Resource\":[\"arn:aws:s3:::dev-bucket-cloudnativeapp1glom-tf/*\",\"arn:aws:s3:::dev-bucket-cloudnativeapp1glom-tf\"],\"Sid\":\"AllowLambdaPermissions\"}],\"Version\":\"2012-10-17\"}"
+                "policy": "{\"Statement\":[{\"Action\":[\"s3:PutObjectAcl\",\"s3:PutObject\"],\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"ecs-tasks.amazonaws.com\"},\"Resource\":[\"arn:aws:s3:::qa-bucket-cloudnativeapp1glom-tf/*\",\"arn:aws:s3:::qa-bucket-cloudnativeapp1glom-tf\"],\"Sid\":\"AllowECSPermissions\"},{\"Action\":[\"s3:ListBucket\",\"s3:GetObjectAttributes\",\"s3:GetObject\"],\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"lambda.amazonaws.com\"},\"Resource\":[\"arn:aws:s3:::qa-bucket-cloudnativeapp1glom-tf/*\",\"arn:aws:s3:::qa-bucket-cloudnativeapp1glom-tf\"],\"Sid\":\"AllowLambdaPermissions\"}],\"Version\":\"2012-10-17\"}"
               },
               "sensitive_values": {}
             },
@@ -1224,7 +1224,7 @@
                 "lambda_failure_feedback_role_arn": null,
                 "lambda_success_feedback_role_arn": null,
                 "lambda_success_feedback_sample_rate": null,
-                "name": "dev-image-notification-cloudnativeapp1glom-tf",
+                "name": "qa-image-notification-cloudnativeapp1glom-tf",
                 "sqs_failure_feedback_role_arn": null,
                 "sqs_success_feedback_role_arn": null,
                 "sqs_success_feedback_sample_rate": null,
@@ -1268,7 +1268,7 @@
                 "kms_master_key_id": null,
                 "max_message_size": 262144,
                 "message_retention_seconds": 345600,
-                "name": "dev-queue-cloudnativeapp1glom-tf",
+                "name": "qa-queue-cloudnativeapp1glom-tf",
                 "receive_wait_time_seconds": 0,
                 "tags": null,
                 "visibility_timeout_seconds": 30
@@ -1482,7 +1482,7 @@
                       }
                     ],
                     "resources": [
-                      "arn:aws:sns:*:*:dev-image-notification-cloudnativeapp1glom-tf"
+                      "arn:aws:sns:*:*:qa-image-notification-cloudnativeapp1glom-tf"
                     ],
                     "sid": "AllowPublishNewMessages"
                   }
@@ -1557,7 +1557,7 @@
                       }
                     ],
                     "resources": [
-                      "arn:aws:sqs:*:*:dev-queue-cloudnativeapp1glom-tf"
+                      "arn:aws:sqs:*:*:qa-queue-cloudnativeapp1glom-tf"
                     ],
                     "sid": "AllowSendMessages"
                   }
@@ -1649,7 +1649,7 @@
         "before": null,
         "after": {
           "kms_key_id": null,
-          "name": "DevCloudnativeappTfCloudwatchLogGroup",
+          "name": "QaCloudnativeappTfCloudwatchLogGroup",
           "retention_in_days": 0,
           "skip_destroy": false,
           "tags": null
@@ -1681,7 +1681,7 @@
         "before": null,
         "after": {
           "configuration": [],
-          "name": "dev_ecs_cluster_cloudnativeapp-tf",
+          "name": "qa_ecs_cluster_cloudnativeapp-tf",
           "service_connect_defaults": [],
           "setting": [
             {
@@ -1744,7 +1744,7 @@
               "elb_name": ""
             }
           ],
-          "name": "DevCloudNativeApp1TFService",
+          "name": "QaCloudNativeApp1TFService",
           "network_configuration": [
             {
               "assign_public_ip": true,
@@ -1835,10 +1835,10 @@
         ],
         "before": null,
         "after": {
-          "container_definitions": "[{\"environment\":[{\"name\":\"AWS_DEFAULT_REGION\",\"value\":\"eu-west-1\"},{\"name\":\"DYNAMODB_TABLE_NAME\",\"value\":\"DevCloudNativeApp1Table-tf\"},{\"name\":\"S3_BUCKET_NAME\",\"value\":\"dev-bucket-cloudnativeapp1glom-tf\"}],\"essential\":true,\"image\":\"381492307166.dkr.ecr.eu-west-1.amazonaws.com/cloudnativeapp-1:latest\",\"logConfiguration\":{\"logDriver\":\"awslogs\",\"options\":{\"awslogs-create-group\":\"true\",\"awslogs-group\":\"/ecs/DevCloudnativeappTfCloudwatchLogGroup\",\"awslogs-region\":\"eu-west-1\",\"awslogs-stream-prefix\":\"ecs\"},\"secretOptions\":[]},\"name\":\"cloudnativeapp-1\",\"portMappings\":[{\"appProtocol\":\"http\",\"containerPort\":8080,\"hostPort\":8080,\"name\":\"cloudnativeapp-1-tf-8080-tcp\",\"protocol\":\"tcp\"}]}]",
+          "container_definitions": "[{\"environment\":[{\"name\":\"AWS_DEFAULT_REGION\",\"value\":\"eu-west-1\"},{\"name\":\"DYNAMODB_TABLE_NAME\",\"value\":\"QaCloudNativeApp1Table-tf\"},{\"name\":\"S3_BUCKET_NAME\",\"value\":\"qa-bucket-cloudnativeapp1glom-tf\"}],\"essential\":true,\"image\":\"381492307166.dkr.ecr.eu-west-1.amazonaws.com/cloudnativeapp-1:latest\",\"logConfiguration\":{\"logDriver\":\"awslogs\",\"options\":{\"awslogs-create-group\":\"true\",\"awslogs-group\":\"/ecs/QaCloudnativeappTfCloudwatchLogGroup\",\"awslogs-region\":\"eu-west-1\",\"awslogs-stream-prefix\":\"ecs\"},\"secretOptions\":[]},\"name\":\"cloudnativeapp-1\",\"portMappings\":[{\"appProtocol\":\"http\",\"containerPort\":8080,\"hostPort\":8080,\"name\":\"cloudnativeapp-1-tf-8080-tcp\",\"protocol\":\"tcp\"}]}]",
           "cpu": "1024",
           "ephemeral_storage": [],
-          "family": "Dev_CloudNativeApp1_TF_Task_Definition_Family",
+          "family": "Qa_CloudNativeApp1_TF_Task_Definition_Family",
           "inference_accelerator": [],
           "ipc_mode": null,
           "memory": "3072",
@@ -1902,7 +1902,7 @@
         "before": null,
         "after": {
           "description": "A policy for lambda",
-          "name": "dev_lambda_iam_policy_cloudnativeapp-tf",
+          "name": "qa_lambda_iam_policy_cloudnativeapp-tf",
           "path": "/",
           "policy": "{\"Statement\":[{\"Action\":[\"sqs:DeleteMessage\",\"sqs:GetQueueAttributes\",\"sqs:ReceiveMessage\"],\"Effect\":\"Allow\",\"Resource\":\"*\"},{\"Action\":[\"dynamodb:GetItem\",\"dynamodb:PutItem\",\"dynamodb:UpdateItem\",\"dynamodb:BatchWriteItem\",\"dynamodb:BatchGetItem\"],\"Effect\":\"Allow\",\"Resource\":\"*\"},{\"Action\":[\"rekognition:DetectLabels\"],\"Effect\":\"Allow\",\"Resource\":\"*\"},{\"Action\":[\"s3:GetObject\"],\"Effect\":\"Allow\",\"Resource\":\"*\"}],\"Version\":\"2012-10-17\"}",
           "tags": null
@@ -1935,10 +1935,10 @@
         "before": null,
         "after": {
           "groups": null,
-          "name": "dev_ecs_te_apprunnerservice_iam_policy_attachment_cloudnativeapp-tf",
+          "name": "qa_ecs_te_apprunnerservice_iam_policy_attachment_cloudnativeapp-tf",
           "policy_arn": "arn:aws:iam::aws:policy/service-role/AWSAppRunnerServicePolicyForECRAccess",
           "roles": [
-            "dev_ecs_task_execution_role_cloudnativeapp-tf"
+            "qa_ecs_task_execution_role_cloudnativeapp-tf"
           ],
           "users": null
         },
@@ -1970,10 +1970,10 @@
         "before": null,
         "after": {
           "groups": null,
-          "name": "dev_ecs_te_cloudwatch_iam_policy_attachment_cloudnativeapp-tf",
+          "name": "qa_ecs_te_cloudwatch_iam_policy_attachment_cloudnativeapp-tf",
           "policy_arn": "arn:aws:iam::aws:policy/CloudWatchLogsFullAccess",
           "roles": [
-            "dev_ecs_task_execution_role_cloudnativeapp-tf"
+            "qa_ecs_task_execution_role_cloudnativeapp-tf"
           ],
           "users": null
         },
@@ -2005,10 +2005,10 @@
         "before": null,
         "after": {
           "groups": null,
-          "name": "dev_ecs_tt_amazondynamodb_iam_policy_attachment_cloudnativeapp-tf",
+          "name": "qa_ecs_tt_amazondynamodb_iam_policy_attachment_cloudnativeapp-tf",
           "policy_arn": "arn:aws:iam::aws:policy/AmazonDynamoDBFullAccess",
           "roles": [
-            "dev_ecs_task_task_role_cloudnativeapp-tf"
+            "qa_ecs_task_task_role_cloudnativeapp-tf"
           ],
           "users": null
         },
@@ -2040,10 +2040,10 @@
         "before": null,
         "after": {
           "groups": null,
-          "name": "dev_ecs_tt_amazons3_iam_policy_attachment_cloudnativeapp-tf",
+          "name": "qa_ecs_tt_amazons3_iam_policy_attachment_cloudnativeapp-tf",
           "policy_arn": "arn:aws:iam::aws:policy/AmazonS3FullAccess",
           "roles": [
-            "dev_ecs_task_task_role_cloudnativeapp-tf"
+            "qa_ecs_task_task_role_cloudnativeapp-tf"
           ],
           "users": null
         },
@@ -2075,9 +2075,9 @@
         "before": null,
         "after": {
           "groups": null,
-          "name": "dev_lambda_iam_policy_attachment_cloudnativeapp-tf",
+          "name": "qa_lambda_iam_policy_attachment_cloudnativeapp-tf",
           "roles": [
-            "dev_lambda_iam_role_cloudnativeapp-tf"
+            "qa_lambda_iam_role_cloudnativeapp-tf"
           ],
           "users": null
         },
@@ -2113,7 +2113,7 @@
           "description": null,
           "force_detach_policies": false,
           "max_session_duration": 3600,
-          "name": "dev_ecs_task_execution_role_cloudnativeapp-tf",
+          "name": "qa_ecs_task_execution_role_cloudnativeapp-tf",
           "path": "/",
           "permissions_boundary": null,
           "tags": null
@@ -2153,7 +2153,7 @@
           "description": null,
           "force_detach_policies": false,
           "max_session_duration": 3600,
-          "name": "dev_ecs_task_task_role_cloudnativeapp-tf",
+          "name": "qa_ecs_task_task_role_cloudnativeapp-tf",
           "path": "/",
           "permissions_boundary": null,
           "tags": null
@@ -2193,7 +2193,7 @@
           "description": null,
           "force_detach_policies": false,
           "max_session_duration": 3600,
-          "name": "dev_lambda_iam_role_cloudnativeapp-tf",
+          "name": "qa_lambda_iam_role_cloudnativeapp-tf",
           "path": "/",
           "permissions_boundary": null,
           "tags": null
@@ -2230,7 +2230,7 @@
         "before": null,
         "after": {
           "policy_arn": "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
-          "role": "dev_lambda_iam_role_cloudnativeapp-tf"
+          "role": "qa_lambda_iam_role_cloudnativeapp-tf"
         },
         "after_unknown": {
           "id": true
@@ -2253,7 +2253,7 @@
         "before": null,
         "after": {
           "policy_arn": "arn:aws:iam::aws:policy/service-role/AWSLambdaSQSQueueExecutionRole",
-          "role": "dev_lambda_iam_role_cloudnativeapp-tf"
+          "role": "qa_lambda_iam_role_cloudnativeapp-tf"
         },
         "after_unknown": {
           "id": true
@@ -2346,13 +2346,13 @@
           "environment": [
             {
               "variables": {
-                "dynamodb_name": "DevCloudNativeApp1Table-tf"
+                "dynamodb_name": "QaCloudNativeApp1Table-tf"
               }
             }
           ],
           "file_system_config": [],
           "filename": "../modules/tf-application/lambda_function_payload.zip",
-          "function_name": "dev_lambda_cloudnativeapp-tf",
+          "function_name": "qa_lambda_cloudnativeapp-tf",
           "handler": "index.lambda_handler",
           "image_config": [],
           "image_uri": null,
@@ -2453,7 +2453,7 @@
           "idle_timeout": 60,
           "internal": false,
           "load_balancer_type": "application",
-          "name": "DevCloudnativeappTfLb",
+          "name": "QaCloudnativeappTfLb",
           "preserve_host_header": false,
           "subnets": [
             "subnet-01da444623a60d536",
@@ -2588,7 +2588,7 @@
             }
           ],
           "lambda_multi_value_headers_enabled": false,
-          "name": "DevCloudnativeappTfLbTg",
+          "name": "QaCloudnativeappTfLbTg",
           "port": 80,
           "protocol": "HTTP",
           "proxy_protocol_v2": false,
@@ -2871,7 +2871,7 @@
                 }
               ],
               "resources": [
-                "arn:aws:sns:*:*:dev-image-notification-cloudnativeapp1glom-tf"
+                "arn:aws:sns:*:*:qa-image-notification-cloudnativeapp1glom-tf"
               ],
               "sid": "AllowPublishNewMessages"
             }
@@ -2983,7 +2983,7 @@
                 }
               ],
               "resources": [
-                "arn:aws:sqs:*:*:dev-queue-cloudnativeapp1glom-tf"
+                "arn:aws:sqs:*:*:qa-queue-cloudnativeapp1glom-tf"
               ],
               "sid": "AllowSendMessages"
             }
@@ -3277,7 +3277,7 @@
           "hash_key": "LabelValue",
           "import_table": [],
           "local_secondary_index": [],
-          "name": "DevCloudNativeApp1Table-tf",
+          "name": "QaCloudNativeApp1Table-tf",
           "range_key": "ImageName",
           "read_capacity": 10,
           "replica": [],
@@ -3339,7 +3339,7 @@
         ],
         "before": null,
         "after": {
-          "bucket": "dev-bucket-cloudnativeapp1glom-tf",
+          "bucket": "qa-bucket-cloudnativeapp1glom-tf",
           "force_destroy": true,
           "tags": null,
           "timeouts": null
@@ -3514,7 +3514,7 @@
         ],
         "before": null,
         "after": {
-          "policy": "{\"Statement\":[{\"Action\":[\"s3:PutObjectAcl\",\"s3:PutObject\"],\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"ecs-tasks.amazonaws.com\"},\"Resource\":[\"arn:aws:s3:::dev-bucket-cloudnativeapp1glom-tf/*\",\"arn:aws:s3:::dev-bucket-cloudnativeapp1glom-tf\"],\"Sid\":\"AllowECSPermissions\"},{\"Action\":[\"s3:ListBucket\",\"s3:GetObjectAttributes\",\"s3:GetObject\"],\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"lambda.amazonaws.com\"},\"Resource\":[\"arn:aws:s3:::dev-bucket-cloudnativeapp1glom-tf/*\",\"arn:aws:s3:::dev-bucket-cloudnativeapp1glom-tf\"],\"Sid\":\"AllowLambdaPermissions\"}],\"Version\":\"2012-10-17\"}"
+          "policy": "{\"Statement\":[{\"Action\":[\"s3:PutObjectAcl\",\"s3:PutObject\"],\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"ecs-tasks.amazonaws.com\"},\"Resource\":[\"arn:aws:s3:::qa-bucket-cloudnativeapp1glom-tf/*\",\"arn:aws:s3:::qa-bucket-cloudnativeapp1glom-tf\"],\"Sid\":\"AllowECSPermissions\"},{\"Action\":[\"s3:ListBucket\",\"s3:GetObjectAttributes\",\"s3:GetObject\"],\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"lambda.amazonaws.com\"},\"Resource\":[\"arn:aws:s3:::qa-bucket-cloudnativeapp1glom-tf/*\",\"arn:aws:s3:::qa-bucket-cloudnativeapp1glom-tf\"],\"Sid\":\"AllowLambdaPermissions\"}],\"Version\":\"2012-10-17\"}"
         },
         "after_unknown": {
           "bucket": true,
@@ -3939,7 +3939,7 @@
           "lambda_failure_feedback_role_arn": null,
           "lambda_success_feedback_role_arn": null,
           "lambda_success_feedback_sample_rate": null,
-          "name": "dev-image-notification-cloudnativeapp1glom-tf",
+          "name": "qa-image-notification-cloudnativeapp1glom-tf",
           "sqs_failure_feedback_role_arn": null,
           "sqs_success_feedback_role_arn": null,
           "sqs_success_feedback_sample_rate": null,
@@ -4018,7 +4018,7 @@
           "kms_master_key_id": null,
           "max_message_size": 262144,
           "message_retention_seconds": 345600,
-          "name": "dev-queue-cloudnativeapp1glom-tf",
+          "name": "qa-queue-cloudnativeapp1glom-tf",
           "receive_wait_time_seconds": 0,
           "tags": null,
           "visibility_timeout_seconds": 30
@@ -4500,8 +4500,8 @@
                 "provider_name": "registry.terraform.io/hashicorp/aws",
                 "schema_version": 0,
                 "values": {
-                  "id": "979601624",
-                  "json": "{\n  \"Version\": \"2012-10-17\",\n  \"Statement\": [\n    {\n      \"Sid\": \"AllowECSPermissions\",\n      \"Effect\": \"Allow\",\n      \"Action\": [\n        \"s3:PutObjectAcl\",\n        \"s3:PutObject\"\n      ],\n      \"Resource\": [\n        \"arn:aws:s3:::dev-bucket-cloudnativeapp1glom-tf/*\",\n        \"arn:aws:s3:::dev-bucket-cloudnativeapp1glom-tf\"\n      ],\n      \"Principal\": {\n        \"Service\": \"ecs-tasks.amazonaws.com\"\n      }\n    },\n    {\n      \"Sid\": \"AllowLambdaPermissions\",\n      \"Effect\": \"Allow\",\n      \"Action\": [\n        \"s3:ListBucket\",\n        \"s3:GetObjectAttributes\",\n        \"s3:GetObject\"\n      ],\n      \"Resource\": [\n        \"arn:aws:s3:::dev-bucket-cloudnativeapp1glom-tf/*\",\n        \"arn:aws:s3:::dev-bucket-cloudnativeapp1glom-tf\"\n      ],\n      \"Principal\": {\n        \"Service\": \"lambda.amazonaws.com\"\n      }\n    }\n  ]\n}",
+                  "id": "1707098879",
+                  "json": "{\n  \"Version\": \"2012-10-17\",\n  \"Statement\": [\n    {\n      \"Sid\": \"AllowECSPermissions\",\n      \"Effect\": \"Allow\",\n      \"Action\": [\n        \"s3:PutObjectAcl\",\n        \"s3:PutObject\"\n      ],\n      \"Resource\": [\n        \"arn:aws:s3:::qa-bucket-cloudnativeapp1glom-tf/*\",\n        \"arn:aws:s3:::qa-bucket-cloudnativeapp1glom-tf\"\n      ],\n      \"Principal\": {\n        \"Service\": \"ecs-tasks.amazonaws.com\"\n      }\n    },\n    {\n      \"Sid\": \"AllowLambdaPermissions\",\n      \"Effect\": \"Allow\",\n      \"Action\": [\n        \"s3:ListBucket\",\n        \"s3:GetObjectAttributes\",\n        \"s3:GetObject\"\n      ],\n      \"Resource\": [\n        \"arn:aws:s3:::qa-bucket-cloudnativeapp1glom-tf/*\",\n        \"arn:aws:s3:::qa-bucket-cloudnativeapp1glom-tf\"\n      ],\n      \"Principal\": {\n        \"Service\": \"lambda.amazonaws.com\"\n      }\n    }\n  ]\n}",
                   "override_json": null,
                   "override_policy_documents": null,
                   "policy_id": null,
@@ -4527,8 +4527,8 @@
                         }
                       ],
                       "resources": [
-                        "arn:aws:s3:::dev-bucket-cloudnativeapp1glom-tf",
-                        "arn:aws:s3:::dev-bucket-cloudnativeapp1glom-tf/*"
+                        "arn:aws:s3:::qa-bucket-cloudnativeapp1glom-tf",
+                        "arn:aws:s3:::qa-bucket-cloudnativeapp1glom-tf/*"
                       ],
                       "sid": "AllowECSPermissions"
                     },
@@ -4552,8 +4552,8 @@
                         }
                       ],
                       "resources": [
-                        "arn:aws:s3:::dev-bucket-cloudnativeapp1glom-tf",
-                        "arn:aws:s3:::dev-bucket-cloudnativeapp1glom-tf/*"
+                        "arn:aws:s3:::qa-bucket-cloudnativeapp1glom-tf",
+                        "arn:aws:s3:::qa-bucket-cloudnativeapp1glom-tf/*"
                       ],
                       "sid": "AllowLambdaPermissions"
                     }
@@ -4706,7 +4706,7 @@
           "source": "../modules/tf-application",
           "expressions": {
             "cloudwatch_log_group": {
-              "constant_value": "DevCloudnativeappTfCloudwatchLogGroup"
+              "constant_value": "QaCloudnativeappTfCloudwatchLogGroup"
             },
             "container_name": {
               "constant_value": "cloudnativeapp-1"
@@ -4718,49 +4718,49 @@
               ]
             },
             "ecs_cluster_name": {
-              "constant_value": "dev_ecs_cluster_cloudnativeapp-tf"
+              "constant_value": "qa_ecs_cluster_cloudnativeapp-tf"
             },
             "ecs_service_name": {
-              "constant_value": "DevCloudNativeApp1TFService"
+              "constant_value": "QaCloudNativeApp1TFService"
             },
             "ecs_task_execution_role_name": {
-              "constant_value": "dev_ecs_task_execution_role_cloudnativeapp-tf"
+              "constant_value": "qa_ecs_task_execution_role_cloudnativeapp-tf"
             },
             "ecs_task_task_role_name": {
-              "constant_value": "dev_ecs_task_task_role_cloudnativeapp-tf"
+              "constant_value": "qa_ecs_task_task_role_cloudnativeapp-tf"
             },
             "ecs_te_apprunnerservice_iam_policy_attachment_name": {
-              "constant_value": "dev_ecs_te_apprunnerservice_iam_policy_attachment_cloudnativeapp-tf"
+              "constant_value": "qa_ecs_te_apprunnerservice_iam_policy_attachment_cloudnativeapp-tf"
             },
             "ecs_te_cloudwatch_iam_policy_attachment_name": {
-              "constant_value": "dev_ecs_te_cloudwatch_iam_policy_attachment_cloudnativeapp-tf"
+              "constant_value": "qa_ecs_te_cloudwatch_iam_policy_attachment_cloudnativeapp-tf"
             },
             "ecs_tt_dynamodb_iam_policy_attachment_name": {
-              "constant_value": "dev_ecs_tt_amazondynamodb_iam_policy_attachment_cloudnativeapp-tf"
+              "constant_value": "qa_ecs_tt_amazondynamodb_iam_policy_attachment_cloudnativeapp-tf"
             },
             "ecs_tt_s3_iam_policy_attachment_name": {
-              "constant_value": "dev_ecs_tt_amazons3_iam_policy_attachment_cloudnativeapp-tf"
+              "constant_value": "qa_ecs_tt_amazons3_iam_policy_attachment_cloudnativeapp-tf"
             },
             "image_uri": {
               "constant_value": "381492307166.dkr.ecr.eu-west-1.amazonaws.com/cloudnativeapp-1:latest"
             },
             "lambda_function_name": {
-              "constant_value": "dev_lambda_cloudnativeapp-tf"
+              "constant_value": "qa_lambda_cloudnativeapp-tf"
             },
             "lambda_iam_policy_attachment_name": {
-              "constant_value": "dev_lambda_iam_policy_attachment_cloudnativeapp-tf"
+              "constant_value": "qa_lambda_iam_policy_attachment_cloudnativeapp-tf"
             },
             "lambda_iam_policy_name": {
-              "constant_value": "dev_lambda_iam_policy_cloudnativeapp-tf"
+              "constant_value": "qa_lambda_iam_policy_cloudnativeapp-tf"
             },
             "lambda_iam_role_name": {
-              "constant_value": "dev_lambda_iam_role_cloudnativeapp-tf"
+              "constant_value": "qa_lambda_iam_role_cloudnativeapp-tf"
             },
             "load_balancer_name": {
-              "constant_value": "DevCloudnativeappTfLb"
+              "constant_value": "QaCloudnativeappTfLb"
             },
             "load_balancer_target_group_name": {
-              "constant_value": "DevCloudnativeappTfLbTg"
+              "constant_value": "QaCloudnativeappTfLbTg"
             },
             "region_name": {
               "references": [
@@ -4787,7 +4787,7 @@
               ]
             },
             "task_family_name": {
-              "constant_value": "Dev_CloudNativeApp1_TF_Task_Definition_Family"
+              "constant_value": "Qa_CloudNativeApp1_TF_Task_Definition_Family"
             },
             "vpc_id": {
               "references": [
@@ -5604,7 +5604,7 @@
               "constant_value": "eu-west-1b"
             },
             "bucket_name": {
-              "constant_value": "dev-bucket-cloudnativeapp1glom-tf"
+              "constant_value": "qa-bucket-cloudnativeapp1glom-tf"
             },
             "default_subnet_a_cidr_blocks": {
               "constant_value": "172.31.0.0/20"
@@ -5619,13 +5619,13 @@
               "constant_value": "subnet-01da444623a60d536"
             },
             "dynamodb_table_name": {
-              "constant_value": "DevCloudNativeApp1Table-tf"
+              "constant_value": "QaCloudNativeApp1Table-tf"
             },
             "sns_name": {
-              "constant_value": "dev-image-notification-cloudnativeapp1glom-tf"
+              "constant_value": "qa-image-notification-cloudnativeapp1glom-tf"
             },
             "sqs_name": {
-              "constant_value": "dev-queue-cloudnativeapp1glom-tf"
+              "constant_value": "qa-queue-cloudnativeapp1glom-tf"
             }
           },
           "module": {
@@ -6600,14 +6600,32 @@
         }
       },
       "variables": {
-        "dev_bucket_name": {
-          "default": "dev-s3-bucket-cloudnativeapp",
-          "description": "Name of the development S3 bucket"
+        "qa_bucket_name": {
+          "default": "qa-s3-bucket-cloudnativeapp",
+          "description": "Name of the QA S3 bucket"
         }
       }
     }
   },
   "relevant_attributes": [
+    {
+      "resource": "module.environment.data.aws_iam_policy_document.s3_iam_pd_cloudnativeapp-tf",
+      "attribute": [
+        "json"
+      ]
+    },
+    {
+      "resource": "module.environment.aws_security_group.ecr_dkr_sg",
+      "attribute": [
+        "id"
+      ]
+    },
+    {
+      "resource": "module.application.aws_lb.load_balancer",
+      "attribute": [
+        "arn"
+      ]
+    },
     {
       "resource": "module.application.aws_iam_role.lambda_iam_role",
       "attribute": [
@@ -6615,7 +6633,73 @@
       ]
     },
     {
+      "resource": "module.application.data.aws_iam_policy.ecs_dynamodb",
+      "attribute": [
+        "arn"
+      ]
+    },
+    {
+      "resource": "module.environment.data.aws_region.current",
+      "attribute": [
+        "name"
+      ]
+    },
+    {
+      "resource": "module.environment.aws_s3_bucket.s3_bucket_cloudnativeapp-tf",
+      "attribute": [
+        "arn"
+      ]
+    },
+    {
+      "resource": "module.environment.data.aws_iam_policy_document.sns_iam_pd_cloudnativeapp-tf",
+      "attribute": [
+        "json"
+      ]
+    },
+    {
       "resource": "module.application.aws_iam_role.ecs_task_task_role",
+      "attribute": [
+        "arn"
+      ]
+    },
+    {
+      "resource": "module.application.data.aws_iam_policy.ecs_cloud_watch",
+      "attribute": [
+        "arn"
+      ]
+    },
+    {
+      "resource": "module.application.data.aws_iam_policy.ecs_s3",
+      "attribute": [
+        "arn"
+      ]
+    },
+    {
+      "resource": "module.environment.aws_s3_bucket.s3_bucket_cloudnativeapp-tf",
+      "attribute": [
+        "bucket"
+      ]
+    },
+    {
+      "resource": "module.application.data.archive_file.lambda_archive_file_cloudnativeapp-tf",
+      "attribute": [
+        "output_base64sha256"
+      ]
+    },
+    {
+      "resource": "module.application.aws_lb_target_group.lb_target_group",
+      "attribute": [
+        "arn"
+      ]
+    },
+    {
+      "resource": "module.application.aws_iam_role.ecs_task_execution_role",
+      "attribute": [
+        "name"
+      ]
+    },
+    {
+      "resource": "module.environment.aws_sqs_queue.sqs_queue_cloudnativeapp-tf",
       "attribute": [
         "arn"
       ]
@@ -6627,7 +6711,49 @@
       ]
     },
     {
+      "resource": "module.application.aws_iam_role.ecs_task_execution_role",
+      "attribute": [
+        "arn"
+      ]
+    },
+    {
+      "resource": "module.environment.aws_sns_topic.sns_image_notification-tf",
+      "attribute": [
+        "arn"
+      ]
+    },
+    {
+      "resource": "module.environment.aws_sqs_queue.sqs_queue_cloudnativeapp-tf",
+      "attribute": [
+        "id"
+      ]
+    },
+    {
+      "resource": "module.environment.data.aws_vpc.default",
+      "attribute": [
+        "id"
+      ]
+    },
+    {
+      "resource": "module.environment.data.aws_vpc.default",
+      "attribute": [
+        "cidr_block"
+      ]
+    },
+    {
+      "resource": "module.environment.aws_security_group.ecr_api_sg",
+      "attribute": [
+        "id"
+      ]
+    },
+    {
       "resource": "module.application.aws_security_group.ecs_service_security_group",
+      "attribute": [
+        "id"
+      ]
+    },
+    {
+      "resource": "module.environment.aws_s3_bucket.s3_bucket_cloudnativeapp-tf",
       "attribute": [
         "id"
       ]
@@ -6639,67 +6765,7 @@
       ]
     },
     {
-      "resource": "module.environment.data.aws_iam_policy_document.s3_iam_pd_cloudnativeapp-tf",
-      "attribute": [
-        "json"
-      ]
-    },
-    {
-      "resource": "module.environment.aws_dynamodb_table.dynamodb_table_cloudnativeapp-tf",
-      "attribute": [
-        "name"
-      ]
-    },
-    {
-      "resource": "module.environment.aws_s3_bucket.s3_bucket_cloudnativeapp-tf",
-      "attribute": [
-        "arn"
-      ]
-    },
-    {
-      "resource": "module.environment.data.aws_vpc.default",
-      "attribute": [
-        "id"
-      ]
-    },
-    {
-      "resource": "module.environment.aws_security_group.ecr_api_sg",
-      "attribute": [
-        "id"
-      ]
-    },
-    {
       "resource": "module.application.aws_ecs_task_definition.ecs_task_definition",
-      "attribute": [
-        "arn"
-      ]
-    },
-    {
-      "resource": "module.application.aws_lb.load_balancer",
-      "attribute": [
-        "arn"
-      ]
-    },
-    {
-      "resource": "module.application.data.aws_iam_policy.ecs_dynamodb",
-      "attribute": [
-        "arn"
-      ]
-    },
-    {
-      "resource": "module.application.aws_iam_policy.lambda_iam_policy",
-      "attribute": [
-        "arn"
-      ]
-    },
-    {
-      "resource": "module.environment.aws_s3_bucket.s3_bucket_cloudnativeapp-tf",
-      "attribute": [
-        "id"
-      ]
-    },
-    {
-      "resource": "module.environment.aws_sns_topic.sns_image_notification-tf",
       "attribute": [
         "arn"
       ]
@@ -6711,69 +6777,9 @@
       ]
     },
     {
-      "resource": "module.application.data.aws_iam_policy.ecs_s3",
+      "resource": "module.application.aws_iam_role.lambda_iam_role",
       "attribute": [
         "arn"
-      ]
-    },
-    {
-      "resource": "module.application.aws_iam_role.ecs_task_execution_role",
-      "attribute": [
-        "name"
-      ]
-    },
-    {
-      "resource": "module.application.data.aws_iam_policy.ecs_cloud_watch",
-      "attribute": [
-        "arn"
-      ]
-    },
-    {
-      "resource": "module.environment.aws_security_group.ecr_dkr_sg",
-      "attribute": [
-        "id"
-      ]
-    },
-    {
-      "resource": "module.environment.data.aws_region.current",
-      "attribute": [
-        "name"
-      ]
-    },
-    {
-      "resource": "module.application.data.archive_file.lambda_archive_file_cloudnativeapp-tf",
-      "attribute": [
-        "output_base64sha256"
-      ]
-    },
-    {
-      "resource": "module.application.aws_iam_role.ecs_task_execution_role",
-      "attribute": [
-        "arn"
-      ]
-    },
-    {
-      "resource": "module.environment.aws_sqs_queue.sqs_queue_cloudnativeapp-tf",
-      "attribute": [
-        "id"
-      ]
-    },
-    {
-      "resource": "module.environment.aws_sqs_queue.sqs_queue_cloudnativeapp-tf",
-      "attribute": [
-        "arn"
-      ]
-    },
-    {
-      "resource": "module.environment.data.aws_vpc.default",
-      "attribute": [
-        "cidr_block"
-      ]
-    },
-    {
-      "resource": "module.environment.data.aws_iam_policy_document.sns_iam_pd_cloudnativeapp-tf",
-      "attribute": [
-        "json"
       ]
     },
     {
@@ -6789,31 +6795,25 @@
       ]
     },
     {
-      "resource": "module.environment.aws_s3_bucket.s3_bucket_cloudnativeapp-tf",
-      "attribute": [
-        "bucket"
-      ]
-    },
-    {
-      "resource": "module.application.aws_iam_role.lambda_iam_role",
-      "attribute": [
-        "arn"
-      ]
-    },
-    {
-      "resource": "module.application.aws_lb_target_group.lb_target_group",
-      "attribute": [
-        "arn"
-      ]
-    },
-    {
       "resource": "module.application.aws_iam_role.ecs_task_task_role",
       "attribute": [
         "name"
       ]
+    },
+    {
+      "resource": "module.environment.aws_dynamodb_table.dynamodb_table_cloudnativeapp-tf",
+      "attribute": [
+        "name"
+      ]
+    },
+    {
+      "resource": "module.application.aws_iam_policy.lambda_iam_policy",
+      "attribute": [
+        "arn"
+      ]
     }
   ],
-  "timestamp": "2024-05-09T22:50:39Z",
+  "timestamp": "2024-05-09T23:00:58Z",
   "applyable": true,
   "complete": true,
   "errored": false
