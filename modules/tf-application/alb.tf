@@ -4,6 +4,7 @@ resource "aws_lb" "load_balancer" {
   load_balancer_type = "application"
   subnets            = var.subnet_ids
   drop_invalid_header_fields = true
+  security_groups = [ aws_security_group.ecs_service_security_group.id ]
 
   enable_deletion_protection = false
 }
