@@ -33,6 +33,7 @@ data "aws_iam_policy_document" "s3_iam_pd_cloudnativeapp-tf" {
     effect    = "Allow"
     actions   = [
       "s3:GetObject",
+      "s3:GetObjectAttributes",
       "s3:ListBucket"
     ]
     resources = [

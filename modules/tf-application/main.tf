@@ -13,7 +13,6 @@ resource "aws_lambda_function" "lambda_function" {
   }
 }
 
-#Lambda SQS Trigger
 resource "aws_lambda_event_source_mapping" "lambda_test_sqs_trigger" {
   event_source_arn = var.sqs_queue_arn
   function_name    = aws_lambda_function.lambda_function.arn

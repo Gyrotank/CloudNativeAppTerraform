@@ -3,16 +3,16 @@ resource "aws_dynamodb_table" "dynamodb_table_cloudnativeapp-tf" {
   billing_mode   = "PROVISIONED"
   read_capacity  = 10
   write_capacity = 10
-  hash_key       = "ImageName"
-  range_key      = "LabelValue"
+  hash_key       = "LabelValue"
+  range_key      = "ImageName"
 
   attribute {
-    name = "ImageName"
+    name = "LabelValue"
     type = "S"
   }
 
   attribute {
-    name = "LabelValue"
+    name = "ImageName"
     type = "S"
   }
 }
