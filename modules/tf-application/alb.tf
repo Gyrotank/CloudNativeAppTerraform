@@ -1,5 +1,5 @@
 resource "aws_lb" "load_balancer" {
-  name               = var.load_balancer_name
+  name               = "CloudnativeappTfLb"
   internal           = false
   load_balancer_type = "application"
   subnets            = var.subnet_ids
@@ -10,7 +10,7 @@ resource "aws_lb" "load_balancer" {
 }
 
 resource "aws_lb_target_group" "lb_target_group" {
-  name     = var.load_balancer_target_group_name
+  name     = "CloudnativeappTfLbTg"
   port     = 80
   protocol = "HTTP"
   vpc_id   = var.vpc_id

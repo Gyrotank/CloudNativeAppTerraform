@@ -11,7 +11,7 @@ output "dynamodb_name" {
 }
 
 output "default_subnet_ids" {
-  value = [ var.default_subnet_a_id, var.default_subnet_b_id ]
+  value = [ aws_default_subnet.default_subnet_a.id, aws_default_subnet.default_subnet_b.id ]
 }
 
 output "default_vpc_id" {

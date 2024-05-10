@@ -1,5 +1,5 @@
 resource "aws_ecs_cluster" "ecs_cluster" {
-  name = var.ecs_cluster_name
+  name = "ecs_cluster_cloudnativeapp-tf"
 
   setting {
     name  = "containerInsights"
@@ -8,7 +8,7 @@ resource "aws_ecs_cluster" "ecs_cluster" {
 }
 
 resource "aws_ecs_task_definition" "ecs_task_definition" {
-  family                   = var.task_family_name
+  family                   = "CloudNativeApp1_TF_Task_Definition_Family"
   network_mode             = "awsvpc"
   memory                   = 3072
   cpu                      = 1024
@@ -17,7 +17,7 @@ resource "aws_ecs_task_definition" "ecs_task_definition" {
   task_role_arn            = aws_iam_role.ecs_task_task_role.arn
 
   container_definitions = jsonencode([{
-    name  = var.container_name
+    name  = "cloudnativeapp-1"
     image = var.image_uri
 
     essential = true
@@ -34,7 +34,7 @@ resource "aws_ecs_task_definition" "ecs_task_definition" {
       "logDriver": "awslogs",
       "options": {
         "awslogs-create-group": "true",
-        "awslogs-group": "/ecs/${var.cloudwatch_log_group}",
+        "awslogs-group": "/ecs/${aws_cloudwatch_log_group.cloudwatch_log_group.name}",
         "awslogs-region": var.region_name,
         "awslogs-stream-prefix": "ecs"
       },
@@ -59,7 +59,7 @@ resource "aws_ecs_task_definition" "ecs_task_definition" {
 }
 
 resource "aws_ecs_service" "ecs_service" {
-  name            = var.ecs_service_name
+  name            = "CloudNativeApp1TFService"
   cluster         = aws_ecs_cluster.ecs_cluster.id
   task_definition = aws_ecs_task_definition.ecs_task_definition.arn
   launch_type     = "FARGATE"
@@ -74,7 +74,7 @@ resource "aws_ecs_service" "ecs_service" {
 
   load_balancer {
     target_group_arn = aws_lb_target_group.lb_target_group.arn
-    container_name   = var.container_name
+    container_name   = "cloudnativeapp-1"
     container_port   = 8080
   }
 }

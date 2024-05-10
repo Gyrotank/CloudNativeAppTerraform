@@ -1,5 +1,5 @@
 resource "aws_iam_role" "lambda_iam_role" {
-  name = var.lambda_iam_role_name
+  name = "lambda_iam_role_cloudnativeapp-tf"
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
@@ -26,7 +26,7 @@ resource "aws_iam_role_policy_attachment" "lambda_basic_sqs_queue_execution_poli
 }
 
 resource "aws_iam_policy" "lambda_iam_policy" {
-  name        = var.lambda_iam_policy_name
+  name        = "lambda_iam_policy_cloudnativeapp-tf"
   description = "A policy for lambda"
 
   policy = jsonencode({
@@ -58,13 +58,13 @@ resource "aws_iam_policy" "lambda_iam_policy" {
 }
 
 resource "aws_iam_policy_attachment" "lambda_iam_policy_attachment" {
-  name       = var.lambda_iam_policy_attachment_name
+  name       = "lambda_iam_policy_attachment_cloudnativeapp-tf"
   roles      = [ aws_iam_role.lambda_iam_role.name ]
   policy_arn = aws_iam_policy.lambda_iam_policy.arn
 }
 
 resource "aws_iam_role" "ecs_task_execution_role" {
-  name = var.ecs_task_execution_role_name
+  name = "ecs_te_role_cloudnativeapp-tf"
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
@@ -81,19 +81,19 @@ resource "aws_iam_role" "ecs_task_execution_role" {
 }
 
 resource "aws_iam_policy_attachment" "ecs_te_cloudwatch_iam_policy_attachment" {
-  name       = var.ecs_te_cloudwatch_iam_policy_attachment_name
+  name       = "ecs_te_cloudwatch_iam_policy_attachment_cloudnativeapp-tf"
   roles      = [aws_iam_role.ecs_task_execution_role.name]
   policy_arn = data.aws_iam_policy.ecs_cloud_watch.arn
 }
 
 resource "aws_iam_policy_attachment" "ecs_te_apprunnerservice_iam_policy_attachment" {
-  name       = var.ecs_te_apprunnerservice_iam_policy_attachment_name
+  name       = "ecs_te_apprunnerservice_iam_policy_attachment_cloudnativeapp-tf"
   roles      = [aws_iam_role.ecs_task_execution_role.name]
   policy_arn = data.aws_iam_policy.ecs_app_runner_service.arn
 }
 
 resource "aws_iam_role" "ecs_task_task_role" {
-  name = var.ecs_task_task_role_name
+  name = "ecs_tt_role_cloudnativeapp-tf"
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
@@ -110,13 +110,13 @@ resource "aws_iam_role" "ecs_task_task_role" {
 }
 
 resource "aws_iam_policy_attachment" "ecs_tt_s3_iam_policy_attachment" {
-  name       = var.ecs_tt_s3_iam_policy_attachment_name
+  name       = "ecs_tt_s3_iam_policy_attachment_cloudnativeapp-tf"
   roles      = [aws_iam_role.ecs_task_task_role.name]
   policy_arn = data.aws_iam_policy.ecs_s3.arn
 }
 
 resource "aws_iam_policy_attachment" "ecs_tt_dynamodb_iam_policy_attachment" {
-  name       = var.ecs_tt_dynamodb_iam_policy_attachment_name
+  name       = "ecs_tt_dynamodb_iam_policy_attachment_cloudnativeapp-tf"
   roles      = [aws_iam_role.ecs_task_task_role.name]
   policy_arn = data.aws_iam_policy.ecs_dynamodb.arn
 }
